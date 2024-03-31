@@ -30,16 +30,9 @@ body{
   padding: .75rem;
   word-wrap: break-word;
   word-break: break-all;
+  font-size: xx-large;
 }
 
-.output .previous-operand{
-  color: rgb(255, 208, 208);
-  font-size: 1.5rem;
-}
-.output .current-operand{
-  color: rgb(255, 255, 255);
-  font-size: 2.5rem;
-}
 
 button{
   cursor:pointer;

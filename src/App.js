@@ -1,56 +1,58 @@
 
 import './App.css';
-import { useReducer } from 'react'
 
-const ACTIONS ={
-  ADD_DIGIT: 'add-digit',
-  CHOOSE_OPERATION: 'choose-operation',
-  CLEAR: 'clear',
-  DELETE_DIGIT: 'delete-digit',
-  EVALUATE: 'evaluate'
-}
 
-function reducer(state, {type, payload}){
-  switch(type) {
-    case: ACTIONS.ADD_DIGIT
-  }
-}
 function App() {
-  const[{currentOperand, previousOperand, operation}, dispatch] = useReducer(reducer,{})
+  
+  const display = document.querySelector(".output");
+
+  function appendToDisplay(input) {
+    // Code to append the value to the display
+    display.value += input;
+  };
+  
+  function clearDisplay(){
+    display.value = "";
+  }
+
+  function calculate(){
+    try{
+      display.value = eval(display.value);
+    }
+    catch(error){
+      display.value = "Error";
+      setTimeout(() => {
+        clearDisplay();
+      }, 2000); // Reset the calculator after 2 seconds
+    }
+  }
+
+  function deleteNum(){
+    display.value = display.value.slice(0, -1);
+  }
 
   return (
     <div className="calculator-grid">
-      
-      <div className="output">
-        <div className="previous-operand">{previousOperand}</div>
-        <div className="current-operand">{currentOperand}</div>
-      </div>
-        <button className="span-two">AC</button>
-        <button className="delete">DEL</button>
-        <button>/</button>
-        
-        <button>7</button>
-        <button>8</button>
-        <button>9</button>
-        <button>x</button>
-        
-
-        <button>4</button>
-        <button>5</button>
-        <button>6</button>
-        <button>+</button>
-
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>-</button>
-
-        <button>.</button>
-        <button>0</button>
-        <button className="span-two">=</button>
-        
-      </div>
-    
+      <input className="output" readOnly></input>
+      <button className="span-two" onClick={() => clearDisplay()}>AC</button>
+      <button className="delete" onClick={() => deleteNum()}>DEL</button>
+      <button onClick={() => appendToDisplay('/')}>/</button>
+      <button onClick={() => appendToDisplay('7')}>7</button>
+      <button onClick={() => appendToDisplay('8')}>8</button>
+      <button onClick={() => appendToDisplay('9')}>9</button>
+      <button onClick={() => appendToDisplay('*')}>x</button>
+      <button onClick={() => appendToDisplay('4')}>4</button>
+      <button onClick={() => appendToDisplay('5')}>5</button>
+      <button onClick={() => appendToDisplay('6')}>6</button>
+      <button onClick={() => appendToDisplay('+')}>+</button>
+      <button onClick={() => appendToDisplay('1')}>1</button>
+      <button onClick={() => appendToDisplay('2')}>2</button>
+      <button onClick={() => appendToDisplay('3')}>3</button>
+      <button onClick={() => appendToDisplay('-')}>-</button>
+      <button onClick={() => appendToDisplay('.')}>.</button>
+      <button onClick={() => appendToDisplay('0')}>0</button>
+      <button className="span-two" onClick={() => calculate()}>=</button>
+    </div>
   );
 }
 
