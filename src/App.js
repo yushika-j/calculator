@@ -7,7 +7,6 @@ function App() {
   const display = document.querySelector(".output");
 
   function appendToDisplay(input) {
-    // Code to append the value to the display
     display.value += input;
   };
   
